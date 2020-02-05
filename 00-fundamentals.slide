@@ -9,6 +9,20 @@ obed.n.munoz@gmail.com
 http://obedmr.com
 @_obedmr
 
+
+* Agenda
+
+- What's a Distributed System?
+- Autonomous computing elements and Single Coherent System
+- Middleware and Distributed Systems
+- Considerations for design
+- Types: High Performance Distributed Computing
+- Types: Distributed Information Systems
+- Types: Pervasive systems
+- Advantages of Distributed Systems
+
+
+
 * What's a Distributed System?
 
 - A *Distributed* *System* is a collection of autonomous computing elements that appears to its users as a single coherent system - _from_ _Steen_ _and_ _Tanenbaum's_  _book_
@@ -162,10 +176,16 @@ There are 4 main ways to achieve integration between common enterprise applicati
 
 * Reading: Advantages of Distributed Systems
 
+From the textbook (Distributed Systems - M. van Steen and A.S. Tanenbaum, Distributed Systems) and other resources you may find.
+
+Gnerate an essay that explain the main advantages of the distributed systems that are based on the following points:
+
 - Concistency and Replication
 - Fault Tolerance
 - Security
 - Development, Test and Release of Distributed Systems
+
+- *Note:* You can get a personalized digital copy of the Distributed Systems book at: [[https://www.distributed-systems.net/index.php/books/ds3/]]
 
 
 * Resources
