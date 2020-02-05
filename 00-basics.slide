@@ -1,0 +1,175 @@
+Fundamentals
+Fundamentals for Distributed Computing
+05 Jan 2020
+Tags: coders, programming, distributed
+
+Obed N Munoz
+Cloud Software Engineer
+obed.n.munoz@gmail.com
+http://obedmr.com
+@_obedmr
+
+* What's a Distributed System?
+
+- A *Distributed* *System* is a collection of autonomous computing elements that appears to its users as a single coherent system - _from_ _Steen_ _and_ _Tanenbaum's_  _book_
+
+- *Key* *components* in a Distributed Systems
+  -  Compute (nodes)
+  -  Network
+  -  Storage
+
+- A Distributed System should be able to *manage* *its* *internal* *and* *external*:
+  - Communication
+  - Synchronization
+  - Scheduling
+  - Management
+
+* Autonomous computing elements and Single Coherent System (1/2)
+
+- Example: High Level of OpenStack Services and their relationship
+.image images/00/openstack_architecture.png 500 800
+
+
+* Autonomous computing elements and Single Coherent System (2/2)
+
+- Example: High Level of Kubernetes architecture
+.image images/00/kubernetes_architecture.png 500 750
+
+
+* Middleware and Distributed Systems (1/2)
+
+.image images/00/middleware_dc.png
+
+
+* Middleware and Distributed Systems (2/2)
+
+*Middleware* can be viewed as a *container* of *commonly* *used* *components* and *functions* that now no longer have to be implemented by applications separately.
+
+Below some of the typical middleware services:
+
+- Communication - Remote Procedure Call (RPC)
+- Transactions - Databases
+- Service Composition - Web Services
+- Reliability - TCP Reliable Delivery
+
+
+* Considerations for design (1/2)
+- *Just* *because* *it* *is* *possible* to build distributed systems *does* *not* necessarily *mean* *that* *it* *is* *a* *good* *idea* _from_ _Steen_ _and_ _Tanenbaum's_  _book_
+
+A well designed distrubuted systems should consider the following characteristics:
+
+- Supporting *resource* *sharing*
+- Make *distribution* *transparent*
+- Being *open* for other components or systems
+- Being *scalable*
+- Cannot avoid *pitfalls*
+
+
+* Considerations for design (2/2)
+
+*Common* *false* *assumptions* that everyone makes when developing a distributed application for the first time - _Peter_ _Deutsch_ _(Sun_ _Microsystems)_
+
+- The network is reliable
+- The network is secure
+- The network is homogeneous
+- The topology does not change
+- Latency is zero
+- Bandwidth is infinite
+- Transport cost is zero
+- There is one administrator
+
+
+
+* Types: High Performance Distributed Computing (1/3)
+
+- *Cluster* *Computing* systems became popular when the price/performance ratio of personal computers and workstations improved.
+
+-  In cluster computing the underlying hardware consists of a collection of similar workstations or PCs, closely connected by means of a high-speed local-area network.
+
+.image images/00/cluster_computing.png
+
+
+* Types: High Performance Distributed Computing (2/3)
+
+- In *Grid* *Computing*, grids are often constructed as a federation of computer systems, where each system may fall under a different administrative domain, and may be very different when it comes to hardware, software, and deployed network technology.
+.image images/00/grid_computing.png
+
+
+* Types: High Performance Distributed Computing (3/3)
+
+- *Cloud* *computing* is all about  providing the facilities to dynamically construct an infrastructure and compose what is needed from available services.
+
+- Cloud Computing is more  about providing lots of *resources* *as* *a* *service* (i.e. IaaS, SaaS, PaaS, XaaS).
+
+- It comes from the idea of having an *optimal* and *managable* *usage* *of* the *infrastructure*.
+
+.image images/00/cloud_computing.png
+
+
+* Types: Distributed Information Systems (1/2)
+
+- *Distributed* *transaction* *processing* systems are basically database-based systems. Operations on a database are carried out in the form of transactions.
+
+.image images/00/transaction_primitives.png
+
+
+* Types: Distributed Information Systems (2/2)
+
+- *Enterprise* *Application* *Integration* is required in order to provide a better interapplication communication and achieve a more integral and complete corporate system.
+
+There are 4 main ways to achieve integration between common enterprise applications [Hohpe and Woolf, 2004] :
+
+- File transfer
+- Shared database
+- Remote procedure calls
+- Messaging
+
+
+* Types: Pervasive systems (1/4)
+
+- With the rise of mobile and embedded computing systems, we're leaded more and more to *pervasive* *systems* which are intented to naturally blend into our environment.
+
+- *Ubiquitous* *computing* *systems* are examples of pervasive and continuously present systems. It means that the interaction with the system is not providing total awareness of its presence.
+
+- Below the core requirements for *ubuquitous* *computing* *systems*:
+  - Distribution
+  - Interaction
+  - Context awareness
+  - Autonomy
+  - Intelligence
+
+
+* Types: Pervasive systems (2/4)
+
+.image images/00/ubiquitous_computing.gif 550 500
+
+
+* Types: Pervasive systems (3/4)
+
+- *Mobile* *computing* *systems* are a common case for pervasive systems.
+
+  - First, the devices that form part of a (distributed) mobile system may vary widely.
+  - Second, in mobile computing the location of a device is assumed to change over time.
+
+- *Sensor* *networks* -  they are more than just a collection of input devices. Instead, as we shall see, sensor nodes often collaborate to efficiently process the sensed data in an application-specific manner.
+
+- A *sensor* *network* generally consists of tens to hundreds or thousands of relatively small nodes, each equipped with one or more sensing devices.
+
+
+* Types: Pervasive systems (4/4)
+
+.image images/00/sensor_networks.png
+
+* Reading: Advantages of Distributed Systems
+
+- Concistency and Replication
+- Fault Tolerance
+- Security
+- Development, Test and Release of Distributed Systems
+
+
+* Resources
+This material is genereated thanks to some extracts from the following resources:
+
+- *Distributed* *Systems* (Chapters 1,7,8) - _by_ _Maarten_van_Steen_ _and_ _Andrew_ _S._ _Tanenbaum_
+- *Reliable* *Delivery* from [[https://www.sciencedirect.com/topics/computer-science/reliable-delivery]]
