@@ -1,0 +1,206 @@
+Distributed System Architectures
+Fundamentals for Distributed Computing Architectures
+24 Feb 2020
+Tags: coders, programming, distributed
+
+Obed N Munoz
+Cloud Software Engineer
+obed.n.munoz@gmail.com
+http://obedmr.com
+@_obedmr
+
+
+* Agenda
+
+- What is a Software or System Architecture?
+- Layered Architectures
+- Object and Service Oriented Architectures
+- Resource-Oriented Architectures
+- Publish-Subscribe Architectures
+
+
+* What is a Software or System Architecture?
+- A *software* *architecture* defines the logic and pysical organization of the software components, alongside their interaction mechanism.
+
+- The final instantiation of a software architecture is also referred to as a *system* *architecture*.
+
+- A *component* is a modular unit with well-defined required and provided *interfaces* that is replaceable within its environment [OMG, 2004].
+
+- A *connector* is generally described as a mechanism that mediates communication, coor- dination, or cooperation among components [Mehta et al., 2000; Shaw and Clements, 1997]
+
+* Example: Virtlet Architecture
+
+.image images/01/virtlet_architecture.png 550 650
+
+
+* Example: OpenFaaS Architecture
+
+.image images/01/openfaas_architecture.png 550 800
+
+
+* Layered Architectures
+
+- Components are organized in a *layered* *fashion* where a component at layer _Lj_ can make a *downcall* to a component at a lower-level layer _Li_ _(with_ _i_ _<_ _j)_ and generally expects a response.
+
+- Only in exceptional cases will an *upcall* be made to a higher-level component.
+
+.image images/01/layered_architecture.png
+
+
+* Layered Architectures: Communication Protocols
+
+- Each layer implements one or several *communication* *services* allowing data to be sent from a destination to one or several targets.
+
+- Each layer offers an *interface* specifying the functions that can be called.
+
+- In a network-distributed system, services communication will be possible through the *Transmission* *Control* *Protocol* *(TCP)*.
+
+.image images/01/layered_communications.png
+
+
+* Layered Architectures: 2 communicating parties (Server)
+
+- *Server*
+
+ func main() {
+ 	listener, err := net.Listen("tcp", "localhost:9090")
+  	if err != nil {
+ 		log.Fatal(err)
+ 	}
+ 	for {
+ 		conn, err := listener.Accept()
+ 		if err != nil {
+ 			log.Print(err) // e.g., connection aborted
+ 			continue
+ 		}
+ 		handleConn(conn) // handle one connection at a time
+ 	}
+ }
+
+
+* Layered Architectures: 2 communicating parties (Client)
+
+- *Client*
+
+ func main() {
+     conn, err := net.Dial("tcp", "localhost:9090")
+     if err != nil {
+         log.Fatal(err)
+     }
+     defer conn.Close()
+     mustCopy(os.Stdout, conn)
+ }
+
+
+* Layered Architecures: Application layering
+
+We can define the following 3 main architectural layers or levels for a distributed system.
+
+- *Application-Interface* level (interaction)
+- The *processing* level (functionality)
+- The *data* level (data storage)
+
+Let's think about:
+
+- Consider a *internet* *search* *engine*
+- Try to explain the 3 diferent layers or levels
+- How the interaction is established between layers?
+
+
+* Layered Architectures: Internet Search Engine
+
+.image images/01/internet_search_engine.png
+
+
+* Object and Service Oriented Architectures (1/2)
+
+- Each *object* corresponds to what we have defined as a *component*, and these components are *connected* through a *procedure* *call* mechanism.
+
+- A *procedure* *call* can also take place over a network, that is, the calling object need not be executed on the same machine as the called object.
+
+- Object-oriented architectures provide a natural way of encapsulation data *(state)* and the operations that can be performed on data *(methods)*.
+
+.image images/01/object_based_architecture.png
+
+
+* Object and Service Oriented Architectures (2/2)
+
+- When a *client* *binds* to a distributed object, an implementation of the object’s *interface*, called a *proxy*, is then loaded into the client’s address space.
+
+- The *server-side* stub is often referred to as a *skeleton* as it provides the bare means for letting the server middleware access the user-defined objects.
+
+.image images/01/client_side_proxy.png
+
+
+* Resource-Oriented Architectures
+
+- One of the problems with service composition is that connecting various components can easily turn into an integration nightmare.
+
+- As an alternative, one can also view a distributed system as a huge *collection* *of* *resources* that are individually managed by components.
+
+- Resources may be *added*, *removed*, *modified* and *retrieved*  by (remote) applications.
+
+- This approach has now been widely adopted for the Web and is known as *Representational* *State* *Transfer* *(REST)* [Fielding, 2000].
+
+.image images/01/restful_operations.png
+
+
+* Resource-Oriented Architectures: RESTful principles
+
+- Resources are identified through a single naming scheme
+- Allservicesofferthesameinterface,consistingofatmostfouroperations, as shown in Figure 2.7
+- Messages sent to or from a service are fully self-described
+-  After executing an operation at a service, that component forgets everything about the caller
+
+*Example:* Amazon’s Simple Storage Service *(Amazon* *S3)*
+
+- *Objects* (essentially files)
+- *Buckets* (directories)
+- An _object_ named `ObjectName` contained in _bucket_ `BucketName` is referred to by means of the following *Uniform* *Resource* *Identifier* *(URI)*:
+
+ http://BucketName.s3.amazonaws.com/ObjectName
+
+
+* Let's code: Amazon S3 Explorer
+
+Follow the link that matches with your current class:
+
+- Distributed Computing
+[[https://classify.obedmr.com/get-lab/dc-labs/aws-s3-explorer]]
+
+
+* Publish-Subscribe Architectures (1/2)
+
+- As systems continue to grow and processes can more easily join or leave, a new architecture emerges to make a strong separation between *processing* and *cordination*.
+
+- *Coordination* encompasses the communication and cooperation between processes. It forms the glue that binds the activities performed by processes into a whole [Gelernter and Carriero, 1992].
+
+.image images/01/cordination_forms.png
+
+
+* Publish-Subscribe Architectures (2/2)
+
+- The only thing a process can do is *publish* a *notification* describing the occurrence of an event (e.g., that it wants to coordinate activities, or that it just produced some interesting results).
+
+-  Assuming that notifications come in all sorts and kinds, processes may *subscribe* to a specific kind of notification.
+
+.image images/01/publish_subscribe_principle.png
+
+
+* Let's read: Predicting failures in multi-tier distributed systems
+
+Read the following article and generate an analysis document where you explain the following points:
+
+- Common failures on layered distributed systems
+- List and describe the key features of the PreMiSE project
+- Based on your article's reading and also this chapter, what are your recomendations or observations when designing a distributed architecture. Support your responses by answering the *what*, *how* and *why*.
+
+
+[[https://www.sciencedirect.com/science/article/pii/S0164121219302389]]
+
+* Resources
+This material is genereated thanks to some extracts from the following resources:
+
+- *Distributed* *Systems* (Chapter 2) - _by_ _Maarten_van_Steen_ _and_ _Andrew_ _S._ _Tanenbaum_
+- Virtlet Architecture [[https://docs.virtlet.cloud/dev/architecture/]]
+- OpenFaaS Architecture [[https://docs.openfaas.com/openfaas-cloud/architecture/]]
