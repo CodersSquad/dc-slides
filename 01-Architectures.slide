@@ -102,7 +102,7 @@ We can define the following 3 main architectural layers or levels for a distribu
 
 Let's think about:
 
-- Consider a *internet* *search* *engine*
+- Consider an *internet* *search* *engine*
 - Try to explain the 3 diferent layers or levels
 - How the interaction is established between layers?
 

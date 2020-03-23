@@ -1,0 +1,43 @@
+Processes
+An introduction to distributed processes
+18 Mar 2020
+Tags: coders, programming, distributed
+
+Obed N Munoz
+Cloud Software Engineer
+obed.n.munoz@gmail.com
+http://obedmr.com
+@_obedmr
+
+
+* Agenda
+
+- Threads
+- Virtualization
+- Clients
+- Servers
+
+
+* Threads
+
+_Threads_ are a key element of distributed systems in order to take advantage of the *multicore* and *multiprocesses* environments we have in modern computers. It will also provide proper mechanisms for defining *client-server* architectures.
+
+They provide a *finer* *granularity* in the form of multiple threads per process in order to get better performance.
+
+A *thread* *context* often consists of nothing more than the processor context, along with some other information for thread management.
+
+The *communication* is simpler than processes, mainly because they can have shared memory while processes require various modes of IPC (Inter-Process Communications) like semaphores, message queues, pipes and others.
+
+* Virtualization
+
+* Clients
+
+* Servers
+
+
+* Resources
+This material is genereated thanks to some extracts from the following resources:
+
+- *Distributed* *Systems* (Chapter 3) - _by_ _Maarten_van_Steen_ _and_ _Andrew_ _S._ _Tanenbaum_
+
+- [[https://medium.com/the-polyglot-programmer/what-are-goroutines-and-how-do-they-actually-work-f2a734f6f991][What are goroutines and how do they actually work?]] - _Medium_ _Article_
