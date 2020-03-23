@@ -28,7 +28,69 @@ A *thread* *context* often consists of nothing more than the processor context, 
 
 The *communication* is simpler than processes, mainly because they can have shared memory while processes require various modes of IPC (Inter-Process Communications) like semaphores, message queues, pipes and others.
 
+
 * Virtualization
+
+There's an *illusion* *of* *parallelism* on single CPU machines. We can see some kind of parallelism between threads and processes in our modern computers, that's why we're able to have many applications running in our computers.
+
+By rapidly *switching* between threads and processes, the illusion of parallelism is created.
+
+This separation between having a single CPU and being able to pretend there are more can be extended to other resources as well, leading to what is known as *resource* *virtualization*.
+
+
+* Virtualization: Princliples
+
+In practice, every (distributed) computer system offers a programming interface to higher-level software, as shown in Figure 3.6(a).
+
+In its essence, virtualization deals with *extending* *or* *replacing* an existing interface so as to mimic the behavior of another system, as shown in Figure 3.6(b).
+
+.image images/02/virtualization_principles.png 350 550
+
+
+* Virtualization: Types 1/3
+
+Computer systems generally offer four different types of interfaces, at three different levels:
+
+- An interface between the hardware and software, the *Instruction* *set* *Architecture* *(ISA)* is foming the set of machine instructions:
+  - Privileged Instructions
+  - General Instructions
+
+- *System* *calls* (offered by the Operating System)
+
+- *Application* *Programming* *Interface* *(API)* - Commonly offered by libraries.
+
+
+* Virtualization: Types 2/3
+
+.image images/02/virtualization_interfaces.png
+
+
+* Virtualization: Types 3/3
+.image images/02/virtualization_types.png 500 900
+
+
+* Virtualization: Let's discuss about performance
+
+Let's talk about the following questions/topics:
+
+- What are the implications of virtualizing hardware through software?
+- What's faster or more performant?
+- What are the current Technologies for Virtualization?
+
+
+* Virtualization: Cloud Computing 1/2
+
+From the perspective of distributed systems, the most important application of virtualization lies in cloud computing. Below a list of the common virtualized services that are being offered in Cloud Computing:
+
+- *Infrastructure-as-a-Service* *(IaaS)* covering the basic infrastructure
+- *Platform-as-a-Service* *(PaaS)* covering system-level services
+- *Software-as-a-Service* *(SaaS)* containing actual applications
+
+
+* Virtualization: Cloud Computing 2/2
+
+.image images/02/iaas_paas_saas.png 550 750
+
 
 * Clients
 
