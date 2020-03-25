@@ -92,10 +92,76 @@ From the perspective of distributed systems, the most important application of v
 .image images/02/iaas_paas_saas.png 550 750
 
 
-* Clients
+* Clients: Networked user interfaces
+A common use case for clients is to provide the means for users to interact with a remote server. Below a chart with the 2 types of interaction that can be supported.
+
+.image images/02/networked_clients.png 450 600
+
+
+* Clients: Example - The X Window System
+
+.image images/02/x_window_system.png
+
 
 * Servers
+A server is a process implementing a specific service on behalf of a collection of clients.
 
+- In an *iterative* *server*,the server itself handles the request and, if necessary, returns a response to the requesting client.
+
+- A *concurrent* *server* does not handle the request itself, but passes it to a separate thread or another process, after which it immediately waits for the next incoming request.
+
+- Another issue is where clients contact a server. In all cases, clients send requests to an *endpoint*, also called a *port*, at the machine where the server is running.
+
+- Common and globally known port examples:
+  - 80   - HTTP
+  - 433  - HTTPS
+  - 22   - SSH
+  - 3306 - MariaDB / MySQL Databases
+  - 5900 - VNC
+  * More examples at https://www.ietf.org/rfc/rfc1700.txt?number=1700
+
+
+* Servers: Contacting Servers
+
+.image images/02/contacting_server.png 550 650
+
+
+* Servers: How to deal with server's interruptions?
+
+Let's disss the following questions:
+
+- What if a client connection abruptly disconnects from the server?
+- When the communication channel is slow?
+- What about server-side issues (cpu, memory, power)?
+- How to recover from an interruption? should we just ignore it?
+
+
+* Servers: Stateless vs Stateful
+
+- A *stateless* *server* does not keep information on the state of its clients, and can change its own state without having to inform any client [Birman, 2012].
+
+- A *stateful* *server* generally maintains persistent information on its clients. This means that the information needs to be explicitly deleted by the server.
+
+*Let's* *discuss:*
+List the pros and cons of the following server implementations:
+
+ - Stateless Server
+   - Fully stateless
+   - Soft stateless
+   
+ - Stateful Server
+   - Session State
+   - Permanent State
+
+
+* Servers: Example - Aache HTTP Server
+
+.image images/02/apacher_server.png 550 800
+
+
+* Servers: Example - 3-tiered server cluster
+
+.image images/02/3_tiered_server_cluster.png
 
 * Resources
 This material is genereated thanks to some extracts from the following resources:
