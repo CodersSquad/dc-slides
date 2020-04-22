@@ -1,0 +1,78 @@
+Communication
+An introduction to distributed communication mechanisms
+20 Apr 2020
+Tags: coders, programming, distributed
+
+Obed N Munoz
+Cloud Software Engineer
+obed.n.munoz@gmail.com
+http://obedmr.com
+@_obedmr
+
+
+* Agenda
+
+- Foundations
+- Remote Procedure Calls (RPC)
+- Message-Passing Communication
+
+_Interprocesss_ _Communication_ _is_ _at_ _the_ _heart_ _of_ _all_ _distributed_ _systems_
+Distributed Systems Book
+
+
+* Foundations (1/3)
+
+*Layered* *Protocols*
+Due the absence of shared memory, all communications in distributed systems is based on sending and receiving (low level) messages.
+
+*The* *OSI* *reference* *model*
+
+The OSI (Open Systems Interconnection) reference model identifies the various levels involved across all the interconnection levels and gives them standard names and points out which level should do which job.
+
+- *Physical* *layer* - Deals with standardizing how 2 computer are connected.
+- *Data* *Link* *layer* - Provides the means to detect and possibly correct transmission errors, also provides the protocols to keep sender and receiver in same pace.
+- *Network* *Layer* - Contains protocols for routing a message through a computer network.
+
+
+* Foundations (2/3)
+
+- *Transport* *layer* - Containers protocols for directly supporting applications.
+- *Session* *layer* - Provides support sessions between applications
+- *Presentation* *layer* - Prescribes how data is represented.
+- *Application* *layer* - Everything else: e-mail protocols, web access protocls, file transfer protocols, etc.
+
+.image images/03/osi.png
+
+
+* Foundations (3/3)
+
+.image images/03/message.png
+.image images/03/middleware.png
+
+
+* Remote Procedure Calls (RPC) (1/2)
+
+The proposal is to allow programs to call procedures located on other machines. When a process on machine `A` calls a procedure on machine `B`, the calling process on `A` is suspended, and execution of the called procedure takes place on `B`.
+
+The idea behind RPC is to make a remote procedure call look as much as possible like a local one.
+
+.image images/03/rpc_principle.png
+
+- The *stub* provides transparency to the programmer-written application code.
+
+* Remote Procedure Calls (RPC) (2/2)
+
+.image images/03/rpc_steps.png
+
+- The *client* *stub* handles the interface between the client’s local procedure call and the run-time system, marshaling and unmarshaling data, invoking the RPC run-time protocol, and if requested, carrying out some of the binding steps.
+- The *server* *stub* provides a similar interface between the run-time system and the local manager procedures that are executed by the server.
+
+
+* Message-Passing communication
+
+
+* Resources
+This material is genereated thanks to some extracts from the following resources:
+
+- *Distributed* *Systems* (Chapter 4) - _by_ _Maarten_van_Steen_ _and_ _Andrew_ _S._ _Tanenbaum_
+- [[https://grpc.io/docs/quickstart/go/][gRPC - Go Quick Start]]
