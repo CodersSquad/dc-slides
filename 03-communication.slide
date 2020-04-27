@@ -70,9 +70,83 @@ The idea behind RPC is to make a remote procedure call look as much as possible 
 
 * Message-Passing communication
 
+*Message-passing* is another mechanism to achieve inter-process communication. It's basically based on messages sharing between processes.
+
+Many distributed systems will use the *transport-level* sockets to communicate. A *socket* is a communication end point to which an application can write data that are to be sent out over the underlying network, and from which incoming data can be read.
+
+A *socket* forms an abstraction over the actual port that is used by the local operating system for a specific transport protocol.
+
+.image images/03/socket_operations.png
+
+
+* Message-Passing communication (Socket opertions)
+
+.image images/03/sockets.png
+
+*Servers* generally execute the first four operations, normally in the order given. When calling the socket operation, the caller creates a new communication end point for a specific transport protocol.
+
+In *clients*, a socket must first be created using the socket operation. The connect operation requires that the caller specifies the transport-level address to which a connection request is to be sent.
+
+
+* Advanced transient messaging
+
+Sockets essentially support only TCP or UDP, meaning that any extra facility for messaging needs to be implemented separately by an application programmer.
+
+In order to achieve more flexibility and separation of dutties in terms of communication, we need more advanced approaches for message-oriented communication.
+
+Below some projects that are defining message-passing communication standards:
+
+- ZeroMQ
+- RabbitMQ
+- ActiveMQ
+- Nanomsg - "Communication Patterns" or "Scalability Protocols"
+- mangos - pure Go implementation of "Scalability Protocols" messaging system
+
+
+* Scalability Protocols (nanomsg approach) 1/5
+
+*Scalability* *Protocols* are basic blocks for building distributed systems. By combining them you can create a vast array of distributed applications.
+
+Scalability protocols are layered on top of the transport layer in the network stack. At the moment, the nanomsg library supports the following transports mechanisms:
+
+- INPROC - transport within a process (between threads, modules etc.)
+- IPC - transport between processes on a single machine
+- TCP - network transport via TCP
+- WS - websockets over TCP
+
+*Nanomsg* currently defines six different _scalability_ _protocols_: *PAIR*, *REQREP*, *PIPELINE*, *BUS*, *PUBSUB* and *SURVEY*.
+
+* Scalability Protocols (nanomsg approach) 2/5
+
+*PAIR* *(Bidirectional* *Communication)* implements simple one-to-one, bidirectional communication between two endpoints. Two nodes can send messages back and forth to each other.
+.image images/03/pair.png
+
+*REQREP* *(Client* *Requests,* *Server* *Replies*)* defines a pattern for building stateless services to process user requests. A client sends a request, the server receives the request, does some processing, and returns a response.
+.image images/03/reqrep.png
+
+* Scalability Protocols (nanomsg approach) 3/5
+
+*PIPELINE* *(One-Way* *Dataflow)* provides unidirectional dataflow which is useful for creating load-balanced processing pipelines. A producer node submits work that is distributed among consumer nodes.
+.image images/03/pipeline.png 80 240
+
+*BUS* *(Many-to-Many* *Communication)* allows messages sent from each peer to be delivered to every other peer in the group.
+.image images/03/bus.png 220 240
+
+
+* Scalability Protocols (nanomsg approach) 4/5
+*PUBSUB* *(Topic* *Broadcasting)* allows publishers to multicast messages to zero or more subscribers. Subscribers, which can connect to multiple publishers, can subscribe to specific topics, allowing them to receive only messages that are relevant to them.
+.image images/03/pubsub.png
+
+* Scalability Protocols (nanomsg approach) 5/5
+*SURVEY* *(Ask* *Group* *a* *Question)* is similar to PUBSUB in that a message from one node is broadcasted to the entire group, but where it differs is that each node in the group responds to the message. This opens up a wide variety of applications because it allows you to quickly and easily query the state of a large number of systems in one go. The survey respondents must respond within a time window configured by the surveyor.
+.image images/03/survey.png
+
 
 * Resources
 This material is genereated thanks to some extracts from the following resources:
 
 - *Distributed* *Systems* (Chapter 4) - _by_ _Maarten_van_Steen_ _and_ _Andrew_ _S._ _Tanenbaum_
 - [[https://grpc.io/docs/quickstart/go/][gRPC - Go Quick Start]]
+- [[https://nanomsg.org/index.html][]]
+- [[https://bravenewgeek.com/a-look-at-nanomsg-and-scalability-protocols/][]]
+- [[https://github.com/nanomsg/mangos][]]
