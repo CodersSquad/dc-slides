@@ -1,0 +1,232 @@
+Introduction to Parallel Programming
+11 May 2020
+Tags: coders, programming, c
+
+Obed N Munoz
+Cloud Software Engineer
+obed.n.munoz@gmail.com
+http://obedmr.com
+@_obedmr
+
+* Concurrent vs Parallel
+
+.image images/04/concurrent_vs_parallel.png
+
+
+* Parallel Programming - Serial Computing
+
+- A problem is broken into a serie of instructions
+- Instructions are executed sequentially
+- Instructions are executed in a single processor
+- Only one instructions at the time
+
+.image images/04/serial_comp.png
+
+
+* Parallel Programming - Parallel Computing
+
+- A problem is broken into a parts that can be solved concurrently
+- Each part is broken to a serie of instructions
+- Instructions from each part are executed simultaneously on different processors.
+- A control/synchronization mechanism is required
+
+.image images/04/paralell_comp.png
+
+
+* Parallel Programming - Parallel Computers 1/2
+
+*Stand-alone* *Computers*
+- Multiple functional units (Lx Caches, prefetch, decode, floating pont, GPU, etc)
+- Multiple execution units/cores
+- Multiple hardware threads
+
+.image images/04/stand-alone.png
+
+
+* Parallel Programming - Parallel Computers 2/2
+
+*Multiple* *stand-alone* *computers* to make a larger parallel computer(cluster).
+
+.image images/04/multiple_comp.png
+
+
+* Parallel Computing - Where?
+
+.image images/04/where.png
+
+
+* Parallel Computing - Why?
+
+- Save time and money.
+- Performance.
+- Solve larger and more complex problems.
+- Provide concurrency.
+- Take advantage of non-local resources.
+- Better use of underlying parallel hardware.
+- What else?
+
+
+* Jargon of Parallel Programming
+
+*von* *Neumann* *Architecture*
+
+.image images/04/von_neumann.png
+
+*So* *what?* *Who* *cares?*
+Parallel computers still follow this basic design, just multiplied in units. The basic, fundamental architecture remains the same.
+
+
+* Jargon of Parallel Programming - Terms
+
+- *Task* - as a sequence of instructions to solve a particular problem
+- *Unit* *of* *execution* *(UE)* - a task needs to be mapped to a UE such as a process or thread
+- *Processing* *element* *(PE)* - as a generic term for a hardware element that executes a stream of instructions. 
+- Load balance and load balancing
+- Synchronization
+- Synchronus vs Asynchronus
+- Race Conditions
+- Deadlocks
+- Granularity
+- Scalability
+
+
+* Flynn's Taxonomy
+
+Distinguishes multi-processor computer architectures according to how they can be classified along the two independent dimensions of *Instruction* *Stream* and *Data* *Stream*. Each of these dimensions can have only one of two possible states: *Single* or *Multiple*.
+
+.image images/04/flynn_taxonomy.png
+
+
+* Parallel Architectures - Shared Memory
+
+- Generaly speaking, all processors have access to all memory as a global address space.
+- Multiple processors can operate independently but share same memory resources.
+
+*Uniform* *Memory* *Access* *(UMA)*
+.image images/04/uma.png
+
+
+* Parallel Architectures - Shared Memory
+
+*Non-Uniform* *Memory* *Access* *(NUMA)*
+.image images/04/numa.png
+
+- Advantages
+  - User-friendly global address space
+  - Fast and Uniform data sharing between tasks
+
+- Disadvantages
+  - Lack of scalability between memory and CPUs relationship
+  - Synchronization relies on programmer
+
+
+* Parallel Architectures - Distributed Memory
+
+Distributed memory systems require a communication network to connect inter-processor memory.
+
+.image images/04/distributed_memory.png
+
+- Advantages
+  - Memory is scalable with number of CPUs
+  - Each CPU can rapidly access its own memory
+  - Cost effectiveness: can use commodity, off-the-shelf processors and networking
+
+- Disadvantages
+  - Data communication is mostly responsability of the programmer
+  - Global memory data structures can not easily map to this memory organization
+  - Non-uniform memory access times
+
+
+* Parallel Architectures - Hybrid Distributed-Shared Memory
+The largest and fastest computers in the world today employ both shared and distributed memory architectures.
+
+.image images/04/hybrid_memory.png
+
+- Advantages/Disadvantages
+  - Whatever is common to both shared and distributed memory architectures.
+  - Increased scalability is an important advantage
+  - Increased programmer complexity is an important disadvantage
+
+
+* Parallel Programming Pattern's Definition
+
+In the book of [[https://www.amazon.com/Patterns-Parallel-Programming-paperback-Software/dp/0321940784][Patterns for Parallel Programming]] from _Massingill_, _Sanders_ and _Mattson_ there's a pattern language that helps on the process of understanding and designing parallel programs.
+
+.image images/04/pattern_language.png
+
+
+* Finding Concurrency
+
+Programmers should start their design of a parallel solution by analyzing the problem within the problem domain to expose exploitable concurrency.
+
+.image images/04/finding_concurrency.png
+
+Is the problem large enough and the results significant enough to justify?
+
+
+* Algorithm Structure
+
+Our goal is to refine the design and move it closer to a program that can execute tasks concurrently by mapping the concurrency onto multiple UEs running on a parallel computer.
+
+.image images/04/algorithm_structure.png
+
+The key issue at this stage is to decide which pattern or patterns are most appropriate for the problem.
+
+
+* Supportting Structures
+
+We call these patterns Supporting Structures because they describe software constructions or "structures" that support the expression of parallel algorithms.
+
+.image images/04/supporting_structures.png
+
+
+* Implementation mechanisms
+
+Every parallel program needs to:
+
+ 1. Create the set of UEs.
+ 2. Manage interactions between them and their access to shared resources
+ 3. Exchange information between UEs.
+ 4. Shut them down in an orderly manner.
+
+.image images/04/implementation_mechanisms.png
+
+
+* Parallel Programming Models
+
+- Shared Memory (without threads)
+- Threads
+- Distributed Memory / Message Passing
+- Data Parallel
+- Hybrid
+- Single Program Multiple Data (SPMD)
+- Multiple Program Multiple Data (MPMD)
+
+More details at: [[https://computing.llnl.gov/tutorials/parallel_comp/#Models]]
+
+
+* Parallel Programming Design Considerations
+
+- Understand the problem and the program
+- Identify hotspots and bottlenecks
+- Partitioning (tasks and data)
+- Communications
+  - Overhead
+  - Latency vs Bandwith
+  - Synchronous or Asynchronous
+  - Scope (point-to-point or collective)
+- Synchronization
+  - Barriers
+  - Locks/Semaphores
+  - Synhcronous communication operations
+- Load balancing
+
+More at: [[https://computing.llnl.gov/tutorials/parallel_comp/#Designing]]
+
+* Resources and Credits
+This material is genereated thanks to some extracts from following resources:
+
+- [[https://computing.llnl.gov/tutorials/parallel_comp/][Introduction to Parallel Computing]] - _Blaise_ _Barney,_ _Lawrence_ _Livermore_ _National_ _Laboratory_
+- Patterns for Parallel Programming - _Berna_ _L_ _Massingill,_  _Beverly_ _A._ _Sanders,_ _Timothy_ _G._ _Mattson_
+
+
