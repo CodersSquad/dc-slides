@@ -113,6 +113,7 @@ A server is a process implementing a specific service on behalf of a collection 
 - Another issue is where clients contact a server. In all cases, clients send requests to an *endpoint*, also called a *port*, at the machine where the server is running.
 
 - Common and globally known port examples:
+
   - 80   - HTTP
   - 433  - HTTPS
   - 22   - SSH
