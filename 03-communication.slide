@@ -1,6 +1,6 @@
 Communication
 An introduction to distributed communication mechanisms
-20 Apr 2020
+12 Apr 2021
 Tags: coders, programming, distributed
 
 Obed N Munoz
@@ -119,26 +119,32 @@ Scalability protocols are layered on top of the transport layer in the network s
 * Scalability Protocols (nanomsg approach) 2/5
 
 *PAIR* *(Bidirectional* *Communication)* implements simple one-to-one, bidirectional communication between two endpoints. Two nodes can send messages back and forth to each other.
+
 .image images/03/pair.png
 
 *REQREP* *(Client* *Requests,* *Server* *Replies*)* defines a pattern for building stateless services to process user requests. A client sends a request, the server receives the request, does some processing, and returns a response.
+
 .image images/03/reqrep.png
 
 * Scalability Protocols (nanomsg approach) 3/5
 
 *PIPELINE* *(One-Way* *Dataflow)* provides unidirectional dataflow which is useful for creating load-balanced processing pipelines. A producer node submits work that is distributed among consumer nodes.
+
 .image images/03/pipeline.png 80 240
 
 *BUS* *(Many-to-Many* *Communication)* allows messages sent from each peer to be delivered to every other peer in the group.
+
 .image images/03/bus.png 220 240
 
 
 * Scalability Protocols (nanomsg approach) 4/5
 *PUBSUB* *(Topic* *Broadcasting)* allows publishers to multicast messages to zero or more subscribers. Subscribers, which can connect to multiple publishers, can subscribe to specific topics, allowing them to receive only messages that are relevant to them.
+
 .image images/03/pubsub.png
 
 * Scalability Protocols (nanomsg approach) 5/5
 *SURVEY* *(Ask* *Group* *a* *Question)* is similar to PUBSUB in that a message from one node is broadcasted to the entire group, but where it differs is that each node in the group responds to the message. This opens up a wide variety of applications because it allows you to quickly and easily query the state of a large number of systems in one go. The survey respondents must respond within a time window configured by the surveyor.
+
 .image images/03/survey.png
 
 
