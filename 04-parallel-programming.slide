@@ -1,5 +1,5 @@
 Introduction to Parallel Programming
-11 May 2020
+26 Apr 2021
 Tags: coders, programming, c
 
 Obed N Munoz
@@ -103,12 +103,14 @@ Distinguishes multi-processor computer architectures according to how they can b
 - Multiple processors can operate independently but share same memory resources.
 
 *Uniform* *Memory* *Access* *(UMA)*
+
 .image images/04/uma.png
 
 
 * Parallel Architectures - Shared Memory
 
 *Non-Uniform* *Memory* *Access* *(NUMA)*
+
 .image images/04/numa.png
 
 - Advantages
